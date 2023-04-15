@@ -15,22 +15,43 @@ console.log(ListNode)
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
-
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(){
+    this.start = null
   }
 
-  enqueue(/* value */) {
-    
+  getUnderlyingList() {
+    return this.start
+  }
+
+  enqueue(data) {
+    if (this.start === null){
+      this.start = new ListNode(data)
+    }else {
+      let node = this.start
+      while(node !== null){
+        if (node.next === null){
+          node.next = new ListNode(data)
+          return
+        }else{
+          node = node.next
+        }
+      }
+    }
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    const val = this.start.value
+    this.start = this.start.next
+    return val
   }
 }
 
 module.exports = {
   Queue
 };
+
+// const queue = new Queue();
+// queue.enqueue(5);
+// queue.enqueue(6);
+// queue.enqueue(7);
+// console.log(JSON.stringify(queue.getUnderlyingList()))
